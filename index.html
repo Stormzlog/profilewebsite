@@ -1,309 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Tavershima Anum - Portfolio</title>
-    <style>
-        /* CSS Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Tavershima Anum - Portfolio</title>
+  <style>
+    /* General Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #111 0%, #222 40%, #000 100%);
+      color: #eee;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-            overflow: hidden;
-        }
+    h1, h2, h3 {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        header h1 {
-            font-size: 3em;
-            margin: 0;
-        }
+    section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 60px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        header p {
-            font-size: 1.5em;
-        }
+    section:hover {
+      transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+    }
 
-        /* 3D Effect for Header - Simple CSS 3D Rotation */
-        .header-3d {
-            perspective: 1000px;
-            margin-top: 20px;
-        }
+    a {
+      color: #00c3ff;
+      text-decoration: none;
+    }
 
-        .header-3d div {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #ff6b6b, #f7b267);
-            margin: 0 auto;
-            transform-style: preserve-3d;
-            animation: rotate3d 10s infinite linear;
-        }
+    /* Header */
+    header {
+      height: 100vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(120deg, #1a1a1a, #111, #1a1a1a);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
 
-        @keyframes rotate3d {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
-        }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 180deg,
+        #ff6b6b,
+        #f7b267,
+        #4caf50,
+        #00c3ff,
+        #ff6b6b
+      );
+      animation: rotate 8s linear infinite;
+      z-index: 0;
+      opacity: 0.3;
+    }
 
-        section {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-        #about {
-            background-color: #fff;
-        }
+    header h1 {
+      font-size: 3.5em;
+      z-index: 1;
+      text-shadow: 0 0 20px #ff6b6b;
+    }
 
-        #skills {
-            background-color: #f9f9f9;
-        }
+    header p {
+      font-size: 1.3em;
+      z-index: 1;
+      color: #ccc;
+    }
 
-        .skill-category {
-            margin-bottom: 40px;
-        }
+    .header-3d {
+      perspective: 1000px;
+      margin-top: 40px;
+      z-index: 1;
+    }
 
-        .skill-bar {
-            background-color: #ddd;
-            border-radius: 5px;
-            height: 20px;
-            margin: 10px 0;
-            position: relative;
-        }
+    .header-3d div {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, #ff6b6b, #f7b267);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      transform-style: preserve-3d;
+      animation: rotate3d 8s infinite linear;
+    }
 
-        .skill-progress {
-            background-color: #4caf50;
-            height: 100%;
-            border-radius: 5px;
-            transition: width 1s ease-in-out;
-        }
+    @keyframes rotate3d {
+      0% { transform: rotateY(0deg) rotateX(0deg); }
+      100% { transform: rotateY(360deg) rotateX(360deg); }
+    }
 
-        .skill-label {
-            position: absolute;
-            top: 0;
-            right: 10px;
-            color: #fff;
-            line-height: 20px;
-        }
+    /* Skills */
+    .skill-category {
+      margin-bottom: 40px;
+    }
 
-        #projects {
-            background-color: #fff;
-        }
+    .skill-bar {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      height: 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .project {
-            margin-bottom: 30px;
-        }
+    .skill-progress {
+      background: linear-gradient(90deg, #00c3ff, #4caf50);
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 1.5s ease-in-out;
+    }
 
-        #contact {
-            background-color: #f9f9f9;
-        }
+    .skill-label {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      color: #fff;
+      font-size: 0.8em;
+      line-height: 20px;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    /* Projects */
+    .project {
+      margin-bottom: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        input, textarea {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+    .project:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
 
-        button {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
 
-        button:hover {
-            background-color: #555;
-        }
+    input, textarea {
+      margin-bottom: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
+    button {
+      background: linear-gradient(90deg, #ff6b6b, #f7b267);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
-            header p {
-                font-size: 1.2em;
-            }
+    button:hover {
+      transform: scale(1.05);
+    }
 
-            section {
-                padding: 40px 10px;
-            }
-        }
-    </style>
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 40px 20px;
+      font-size: 0.9em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5em; }
+      header p { font-size: 1.1em; }
+      section { margin: 40px 15px; }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Hello there!</h1>
+    <p>I'm <strong>Gabriel Tavershima Anum</strong></p>
+    <p>Law Student & Creative Genius | CEO, Designer, Writer, and Legal Scholar</p>
+    <div class="header-3d"><div></div></div>
+  </header>
 
-    <header>
-        <h1>Hello there!</h1>
-        <p>I'm Gabriel Tavershima Anum</p>
-        <p>Law Student & Creative Genius | CEO, Designer, Writer, and Legal Scholar</p>
-        <div class="header-3d">
-            <div></div> <!-- Simple 3D rotating element -->
-        </div>
-    </header>
+  <section id="about">
+    <h2>About Me</h2>
+    <p><strong>Name:</strong> Gabriel Tavershima Anum (He who is king / Lord of Night and Anguish)</p>
+    <p><strong>Location:</strong> Makurdi, Benue State, Nigeria</p>
+    <p><strong>Email:</strong> <a href="mailto:Anumgabriel079@gmail.com">Anumgabriel079@gmail.com</a></p>
+    <p>Strategic and creative thinker balancing logic (law) and imagination (art and tech). Driven by perfection and impact in storytelling, business, and design.</p>
+  </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Name: Gabriel Tavershima Anum (Preferred: He who is king / Lord of Night and Anguish)</p>
-        <p>Location: Makurdi, Benue State, Nigeria</p>
-        <p>Age: 20</p>
-        <p>Email: Anumgabriel079@gmail.com</p>
-        <p>Phone (Personal): 0701 126 4506 | Phone (Business): 0907 762 1279</p>
-        <p>Strategic and creative thinker balancing logic (law) and imagination (art and tech). Prefers direct, high-efficiency communication. Driven by perfection and impact in storytelling, business, and design.</p>
-        
-        <h3>Education</h3>
-        <p>Benue State University, Makurdi - Bachelor of Laws (LL.B) - Undergraduate</p>
-        <p>Courses: LAW 201 – Constitutional Law I, LAW 205 – Nigerian Legal Systems, Introduction to Legal Methods</p>
-        <p>Affiliation: Nigerian Association of Law Teachers (NALT)</p>
-        <p>Baptist High School, Makurdi - 2017–2022 - Arts and Humanities - Secondary School Certificate (SSC)</p>
-        
-        <h3>Professional Experience</h3>
-        <p>Kingz Media - CEO (since 2023) - Lead creative direction, manage design team, social media strategy.</p>
-        <p>The Guard Empire - Partner/Design Collaborator - Reference: Gloria Akya (CEO) – 0706 370 0150</p>
-        <p>Aunt Gloria’s Clothing Brand - Social Media Planner & Strategist - Marketing hand-sewn fashion.</p>
-        
-        <h3>Achievements & Awards</h3>
-        <p>Honors Award: Recognized by a small creative platform for outstanding design work.</p>
-        <p>Over 5 years of professional design experience.</p>
-        <p>Founder of Kingz Media, a creative and branding agency.</p>
-        
-        <h3>Online Presence</h3>
-        <p>Portfolio: <a href="gabrielink-1.firebaseapp.com">gabrielink-1.firebaseapp.com</a></p>
-        <p>GitHub: Stormzlog</p>
-        <p>Instagram: @big_anum</p>
-    </section>
+  <section id="skills">
+    <h2>Skills & Expertise</h2>
+    <div class="skill-category">
+      <h3>Design</h3>
+      <div>Graphic Design</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:90%"></div><span class="skill-label">90%</span></div>
+      <div>UI/UX Design</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:85%"></div><span class="skill-label">85%</span></div>
+    </div>
+    <div class="skill-category">
+      <h3>Tech</h3>
+      <div>Ethical Hacking</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:75%"></div><span class="skill-label">75%</span></div>
+      <div>Web Development</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:80%"></div><span class="skill-label">80%</span></div>
+    </div>
+  </section>
 
-    <section id="skills">
-        <h2>Skills & Expertise</h2>
-        <div class="skill-category">
-            <h3>Design</h3>
-            <div>Graphic Design</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
-            <div>UI/UX Design</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
-            <div>Web Design</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
-        </div>
-        <div class="skill-category">
-            <h3>Tech</h3>
-            <div>Ethical Hacking</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div><span class="skill-label">75%</span></div>
-            <div>Web Development</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
-            <div>Cybersecurity</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div><span class="skill-label">70%</span></div>
-        </div>
-        <div class="skill-category">
-            <h3>Law</h3>
-            <div>Legal Writing</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
-            <div>Case Analysis</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
-            <div>Legal Research</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
-        </div>
-        <div class="skill-category">
-            <h3>Creative</h3>
-            <div>Fiction Writing</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div><span class="skill-label">95%</span></div>
-            <div>Story Development</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
-            <div>Copywriting</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
-        </div>
-        <div class="skill-category">
-            <h3>Business</h3>
-            <div>Leadership</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
-            <div>Marketing Strategy</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div><span class="skill-label">75%</span></div>
-            <div>Brand Management</div>
-            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
-        </div>
-        
-        <h3>Certifications</h3>
-        <p>Certified Graphics Designer – SACS Computers, Makurdi (2022)</p>
-        <p>Certified Web Designer – Professional Certification</p>
-        <p>Certified Ethical Hacker – 2025</p>
-    </section>
+  <section id="projects">
+    <h2>Projects & Brands</h2>
+    <div class="project">
+      <h3>Cha-Ching</h3>
+      <p>AI-powered personal finance business offering smart budgeting and expense tracking.</p>
+    </div>
+    <div class="project">
+      <h3>Blood and Bronze: The Fall of Benin</h3>
+      <p>Historical fiction novel following the fall of the Benin Kingdom through Eguavoen’s eyes.</p>
+    </div>
+    <div class="project">
+      <h3>The King of Nothing</h3>
+      <p>Cyberpunk-mafia series about Ren Kazimir, a betrayed mafia king rebuilding his empire in exile.</p>
+    </div>
+  </section>
 
-    <section id="projects">
-        <h2>Projects & Brands</h2>
-        <div class="project">
-            <h3>Cha-Ching</h3>
-            <p>Type: AI-powered personal finance business</p>
-            <p>Focus: Smart budgeting, expense tracking, and AI-based financial advice</p>
-        </div>
-        <div class="project">
-            <h3>Blood and Bronze: The Fall of Benin</h3>
-            <p>Type: Historical Fiction Novel (in progress)</p>
-            <p>Concept: Chronicles the fall of the Benin Kingdom through the story of Eguavoen, a warrior torn between prophecy, love, and war. Goal: 300–400 pages</p>
-        </div>
-        <div class="project">
-            <h3>The King of Nothing</h3>
-            <p>Type: Cyberpunk-Mafia Novel Series</p>
-            <p>Concept: Follows Ren Kazimir, a betrayed mafia king trapped in a virtual world, combining crime, revenge, and erotica themes. Goal: 20 chapters per book</p>
-        </div>
-        <div class="project">
-            <h3>Heavens Fall</h3>
-            <p>Type: Fantasy Series (in development)</p>
-            <p>Concept: Complex world with gods, factions, and celestial wars between deities and mortals</p>
-        </div>
-        <div class="project">
-            <h3>NAOS Simulation-Style Platform (Planned)</h3>
-            <p>Purpose: Daily Nigerian law case simulations for students and professionals</p>
-        </div>
-    </section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-    <section id="contact">
-        <h2>Send Me a Message</h2>
-        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Replace with your Formspree or similar endpoint -->
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+  <footer>© 2025 Gabriel Tavershima Anum. All rights reserved.</footer>
 
-    <script>
-        // JavaScript for simple animations or form handling
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate skill bars on load
-            const progressBars = document.querySelectorAll('.skill-progress');
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
-            });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animate skill bars
+      document.querySelectorAll('.skill-progress').forEach(bar => {
+        const target = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => { bar.style.width = target; }, 400);
+      });
 
-            // Form submission alert (for demo)
-            const form = document.getElementById('contact-form');
-            form.addEventListener('submit', function(e) {
-                // e.preventDefault(); // Uncomment if not using real endpoint
-                alert('Message sent successfully!');
-            });
-        });
-    </script>
-
+      // Smooth form alert
+      document.querySelector('#contact-form').addEventListener('submit', () => {
+        alert('Message sent successfully!');
+      });
+    });
+  </script>
 </body>
 </html>
