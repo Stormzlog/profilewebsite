@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Tavershima Anum - Portfolio</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        /* 3D Effect for Header - Simple CSS 3D Rotation */
+        .header-3d {
+            perspective: 1000px;
+            margin-top: 20px;
+        }
+
+        .header-3d div {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ff6b6b, #f7b267);
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: rotate3d 10s infinite linear;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #about {
+            background-color: #fff;
+        }
+
+        #skills {
+            background-color: #f9f9f9;
+        }
+
+        .skill-category {
+            margin-bottom: 40px;
+        }
+
+        .skill-bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            height: 20px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .skill-progress {
+            background-color: #4caf50;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        .skill-label {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            color: #fff;
+            line-height: 20px;
+        }
+
+        #projects {
+            background-color: #fff;
+        }
+
+        .project {
+            margin-bottom: 30px;
+        }
+
+        #contact {
+            background-color: #f9f9f9;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+
+            section {
+                padding: 40px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hello there!</h1>
+        <p>I'm Gabriel Tavershima Anum</p>
+        <p>Law Student & Creative Genius | CEO, Designer, Writer, and Legal Scholar</p>
+        <div class="header-3d">
+            <div></div> <!-- Simple 3D rotating element -->
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Name: Gabriel Tavershima Anum (Preferred: He who is king / Lord of Night and Anguish)</p>
+        <p>Location: Makurdi, Benue State, Nigeria</p>
+        <p>Age: 20</p>
+        <p>Email: Anumgabriel079@gmail.com</p>
+        <p>Phone (Personal): 0701 126 4506 | Phone (Business): 0907 762 1279</p>
+        <p>Strategic and creative thinker balancing logic (law) and imagination (art and tech). Prefers direct, high-efficiency communication. Driven by perfection and impact in storytelling, business, and design.</p>
+        
+        <h3>Education</h3>
+        <p>Benue State University, Makurdi - Bachelor of Laws (LL.B) - Undergraduate</p>
+        <p>Courses: LAW 201 – Constitutional Law I, LAW 205 – Nigerian Legal Systems, Introduction to Legal Methods</p>
+        <p>Affiliation: Nigerian Association of Law Teachers (NALT)</p>
+        <p>Baptist High School, Makurdi - 2017–2022 - Arts and Humanities - Secondary School Certificate (SSC)</p>
+        
+        <h3>Professional Experience</h3>
+        <p>Kingz Media - CEO (since 2023) - Lead creative direction, manage design team, social media strategy.</p>
+        <p>The Guard Empire - Partner/Design Collaborator - Reference: Gloria Akya (CEO) – 0706 370 0150</p>
+        <p>Aunt Gloria’s Clothing Brand - Social Media Planner & Strategist - Marketing hand-sewn fashion.</p>
+        
+        <h3>Achievements & Awards</h3>
+        <p>Honors Award: Recognized by a small creative platform for outstanding design work.</p>
+        <p>Over 5 years of professional design experience.</p>
+        <p>Founder of Kingz Media, a creative and branding agency.</p>
+        
+        <h3>Online Presence</h3>
+        <p>Portfolio: <a href="gabrielink-1.firebaseapp.com">gabrielink-1.firebaseapp.com</a></p>
+        <p>GitHub: Stormzlog</p>
+        <p>Instagram: @big_anum</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skill-category">
+            <h3>Design</h3>
+            <div>Graphic Design</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
+            <div>UI/UX Design</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
+            <div>Web Design</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>Tech</h3>
+            <div>Ethical Hacking</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div><span class="skill-label">75%</span></div>
+            <div>Web Development</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
+            <div>Cybersecurity</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div><span class="skill-label">70%</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>Law</h3>
+            <div>Legal Writing</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
+            <div>Case Analysis</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
+            <div>Legal Research</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>Creative</h3>
+            <div>Fiction Writing</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div><span class="skill-label">95%</span></div>
+            <div>Story Development</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div><span class="skill-label">90%</span></div>
+            <div>Copywriting</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>Business</h3>
+            <div>Leadership</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div><span class="skill-label">80%</span></div>
+            <div>Marketing Strategy</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div><span class="skill-label">75%</span></div>
+            <div>Brand Management</div>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div><span class="skill-label">85%</span></div>
+        </div>
+        
+        <h3>Certifications</h3>
+        <p>Certified Graphics Designer – SACS Computers, Makurdi (2022)</p>
+        <p>Certified Web Designer – Professional Certification</p>
+        <p>Certified Ethical Hacker – 2025</p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Brands</h2>
+        <div class="project">
+            <h3>Cha-Ching</h3>
+            <p>Type: AI-powered personal finance business</p>
+            <p>Focus: Smart budgeting, expense tracking, and AI-based financial advice</p>
+        </div>
+        <div class="project">
+            <h3>Blood and Bronze: The Fall of Benin</h3>
+            <p>Type: Historical Fiction Novel (in progress)</p>
+            <p>Concept: Chronicles the fall of the Benin Kingdom through the story of Eguavoen, a warrior torn between prophecy, love, and war. Goal: 300–400 pages</p>
+        </div>
+        <div class="project">
+            <h3>The King of Nothing</h3>
+            <p>Type: Cyberpunk-Mafia Novel Series</p>
+            <p>Concept: Follows Ren Kazimir, a betrayed mafia king trapped in a virtual world, combining crime, revenge, and erotica themes. Goal: 20 chapters per book</p>
+        </div>
+        <div class="project">
+            <h3>Heavens Fall</h3>
+            <p>Type: Fantasy Series (in development)</p>
+            <p>Concept: Complex world with gods, factions, and celestial wars between deities and mortals</p>
+        </div>
+        <div class="project">
+            <h3>NAOS Simulation-Style Platform (Planned)</h3>
+            <p>Purpose: Daily Nigerian law case simulations for students and professionals</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Send Me a Message</h2>
+        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Replace with your Formspree or similar endpoint -->
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // JavaScript for simple animations or form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate skill bars on load
+            const progressBars = document.querySelectorAll('.skill-progress');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+
+            // Form submission alert (for demo)
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function(e) {
+                // e.preventDefault(); // Uncomment if not using real endpoint
+                alert('Message sent successfully!');
+            });
+        });
+    </script>
+
+</body>
+</html>
