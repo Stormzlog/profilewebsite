@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book Services — Gabriel Tavershima Anum</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- AOS (scroll animations) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-1: #020409;
+      --bg-2: #071216;
+      --neon: #00ff88;
+      --accent: #8cffb0;
+      --muted: #9aa4a2;
+      --glass: rgba(255,255,255,0.03);
+      --neon-glow: rgba(0,255,136,0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,255,136,0.02), transparent),
+                  linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      color: #e9f5ef;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* PARTICLES CANVAS full-bleed */
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+    }
+
+    /* NAV */
+    .navbar {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      backdrop-filter: blur(6px);
+      z-index: 40;
+      transition: all .25s ease;
+      border-bottom: 1px solid rgba(0,255,136,0.05);
+    }
+    .navbar.shrink {
+      padding-top: .25rem !important;
+      padding-bottom: .25rem !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+    .brand-badge {
+      width: 44px; height: 44px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #001b10; background: linear-gradient(135deg, var(--neon), #54c78a);
+      box-shadow: 0 6px 20px rgba(0,255,136,0.09), inset 0 -3px 8px rgba(0,0,0,0.15);
+    }
+    .nav-link { color: #dfffe6; }
+    .nav-link:hover { color: var(--neon); }
+
+    /* Booking Section */
+    .booking-section {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      padding: 80px 20px 120px;
+    }
+    .booking-card {
+      max-width: 800px;
+      width: 100%;
+      padding: 28px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 30px 80px rgba(2,10,6,0.6), 0 6px 20px rgba(0,0,0,0.6);
+      transform-style: preserve-3d;
+      perspective: 1200px;
+      border: 1px solid rgba(0,255,136,0.04);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .booking-card:hover { transform: translateY(-8px) rotateX(2deg); box-shadow: 0 50px 100px rgba(0,0,0,0.7); }
+
+    .title {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #fff 30%, var(--neon) 70%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 6px 30px rgba(0,255,136,0.06);
+    }
+
+    .form-label { color: var(--accent); }
+    .form-control { background: transparent; color: #e9f5ef; border-color: rgba(0,255,136,0.22); }
+    .form-control:focus { border-color: var(--neon); box-shadow: 0 0 0 0.25rem rgba(0,255,136,0.25); }
+
+    .btn-neon {
+      background: linear-gradient(90deg, rgba(0,255,136,0.12), rgba(0,255,136,0.06));
+      border: 1px solid rgba(0,255,136,0.22);
+      color: var(--neon);
+      padding: 10px 18px; border-radius: 10px; font-weight: 700;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 8px 30px rgba(0,255,136,0.03);
+    }
+    .btn-neon:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(0,255,136,0.12); }
+
+    #payment-info { margin-top: 20px; padding: 15px; background: rgba(0,255,136,0.05); border-radius: 10px; display: none; }
+    #payment-info h5 { color: var(--neon); }
+  </style>
+</head>
+<body>
+
+  <!-- particles -->
+  <div id="particles-js"></div>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <div class="brand-badge">GA</div>
+        <div class="ms-2">
+          <div style="font-weight:700">He Who Is King</div>
+          <small style="color:var(--muted);font-size:12px">Gabriel T. Anum</small>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="navMenu" class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li> <!-- Assuming portfolio is index.html -->
+          <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Booking Section -->
+  <section class="booking-section">
+    <div class="booking-card container" data-aos="fade-up">
+      <div class="title">Book a Service</div>
+      <form id="booking-form" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Replace with your Formspree ID -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="whatsapp" class="form-label">WhatsApp Number</label>
+          <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="heard" class="form-label">How You Heard About Us</label>
+          <input type="text" class="form-control" id="heard" name="heard" required>
+        </div>
+        <div class="mb-3">
+          <label for="service" class="form-label">Service</label>
+          <select class="form-select" id="service" name="service" required>
+            <option value="">Select Service</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Creative Writing">Creative Writing</option>
+            <option value="Legal Consulting">Legal Consulting</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="subservice" class="form-label">Sub Service</label>
+          <select class="form-select" id="subservice" name="subservice" required disabled>
+            <option value="">Select Sub Service</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="duration" class="form-label">Duration</label>
+          <select class="form-select" id="duration" name="duration" required>
+            <option value="">Select Duration</option>
+            <option value="Standard">Standard</option>
+            <option value="Express">Express (Extra Cost)</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-neon" id="calculate-btn">Calculate Cost</button>
+        <div id="payment-info">
+          <h5>Payment Details</h5>
+          <p id="total-cost"></p>
+          <p id="part-payment"></p>
+          <p>To begin the job, make part payment to:</p>
+          <p>Bank: Example Bank<br>Account Name: Gabriel T. Anum<br>Account Number: 1234567890<br>Sort Code: 00-00-00</p> <!-- Replace with actual bank details -->
+          <p>Send proof of payment to Anumgabriel079@gmail.com or WhatsApp.</p>
+        </div>
+        <button type="submit" class="btn btn-neon mt-3" id="submit-btn" disabled>Submit Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <!-- particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Bootstrap bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // AOS init
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-quart',
+      once: true,
+      offset: 80
+    });
+
+    // particles config
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#00ff88","#8cffb0","#9fe7ff"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.12, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": false },
+        "move": { "enable": true, "speed": 0.9, "direction": "none", "out_mode": "out" }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "repulse" }
+        },
+        "modes": {
+          "grab": { "distance": 160, "line_linked": { "opacity": 0.12 } },
+          "repulse": { "distance": 120 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Services data (prices in NGN, adjust as needed)
+    const services = {
+      "Graphic Design": {
+        subs: {
+          "Logo": 50000,
+          "Poster": 20000,
+          "Brochure": 30000
+        },
+        express_extra: 10000
+      },
+      "Web Development": {
+        subs: {
+          "Landing Page": 100000,
+          "Full Site": 250000
+        },
+        express_extra: 50000
+      },
+      "Creative Writing": {
+        subs: {
+          "Short Story": 30000,
+          "Book Chapter": 50000
+        },
+        express_extra: 15000
+      },
+      "Legal Consulting": {
+        subs: {
+          "Case Review": 40000,
+          "Document Drafting": 60000
+        },
+        express_extra: 20000
+      }
+    };
+
+    // Populate sub services on service change
+    const serviceSelect = document.getElementById('service');
+    const subServiceSelect = document.getElementById('subservice');
+    serviceSelect.addEventListener('change', (e) => {
+      const selectedService = e.target.value;
+      subServiceSelect.innerHTML = '<option value="">Select Sub Service</option>';
+      subServiceSelect.disabled = false;
+      if (selectedService && services[selectedService]) {
+        for (const [sub, price] of Object.entries(services[selectedService].subs)) {
+          const option = document.createElement('option');
+          option.value = sub;
+          option.textContent = `${sub} (NGN ${price.toLocaleString()})`;
+          subServiceSelect.appendChild(option);
+        }
+      }
+    });
+
+    // Calculate cost
+    const calculateBtn = document.getElementById('calculate-btn');
+    const durationSelect = document.getElementById('duration');
+    const paymentInfo = document.getElementById('payment-info');
+    const totalCostP = document.getElementById('total-cost');
+    const partPaymentP = document.getElementById('part-payment');
+    const submitBtn = document.getElementById('submit-btn');
+
+    calculateBtn.addEventListener('click', () => {
+      const service = serviceSelect.value;
+      const sub = subServiceSelect.value;
+      const duration = durationSelect.value;
+
+      if (service && sub && duration) {
+        const basePrice = services[service].subs[sub];
+        const extra = duration === 'Express' ? services[service].express_extra : 0;
+        const total = basePrice + extra;
+        const part = total * 0.5; // 50% part payment
+
+        totalCostP.textContent = `Total Cost: NGN ${total.toLocaleString()}`;
+        partPaymentP.textContent = `Part Payment to Begin: NGN ${part.toLocaleString()}`;
+
+        // Add hidden inputs for costs
+        let totalInput = document.querySelector('input[name="total_cost"]');
+        if (!totalInput) {
+          totalInput = document.createElement('input');
+          totalInput.type = 'hidden';
+          totalInput.name = 'total_cost';
+          document.getElementById('booking-form').appendChild(totalInput);
+        }
+        totalInput.value = `NGN ${total.toLocaleString()}`;
+
+        let partInput = document.querySelector('input[name="part_payment"]');
+        if (!partInput) {
+          partInput = document.createElement('input');
+          partInput.type = 'hidden';
+          partInput.name = 'part_payment';
+          document.getElementById('booking-form').appendChild(partInput);
+        }
+        partInput.value = `NGN ${part.toLocaleString()}`;
+
+        paymentInfo.style.display = 'block';
+        submitBtn.disabled = false;
+      } else {
+        alert('Please select service, sub service, and duration.');
+      }
+    });
+
+    // NAV shrink on scroll
+    const nav = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) nav.classList.add('shrink'); else nav.classList.remove('shrink');
+    });
+  </script>
+</body>
+</html>
